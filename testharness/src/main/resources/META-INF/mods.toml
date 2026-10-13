@@ -1,0 +1,16 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "MIT"
+
+[[mods]]
+modId = "ae2throttletest"
+version = "1.0.0"
+displayName = "AE2 Watcher Throttle test harness"
+description = "Console commands for testing AE2 Watcher Throttle. Test servers only."
+
+[[dependencies.ae2throttletest]]
+    modId = "ae2"
+    mandatory = true
+    versionRange = "*"
+    ordering = "AFTER"
+    side = "BOTH"

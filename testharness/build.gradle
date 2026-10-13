@@ -1,0 +1,26 @@
+// Test-only mod used by run_tests.py. Not part of the release.
+base {
+    archivesName = "ae2throttletest"
+}
+
+architectury {
+    forge()
+}
+
+loom {
+    forge {
+        mixinConfig "ae2throttletest.mixins.json"
+    }
+}
+
+jar {
+    manifest {
+        attributes(['MixinConfigs': 'ae2throttletest.mixins.json'])
+    }
+}
+
+dependencies {
+    forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    compileOnly project(path: ':forge', configuration: 'namedElements')
+    modCompileOnly files("${rootDir}/libs/appliedenergistics2-forge-15.4.10.jar")
+}

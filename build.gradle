@@ -1,0 +1,44 @@
+plugins {
+	id 'architectury-plugin' version '3.4-SNAPSHOT'
+	id 'dev.architectury.loom' version '1.6-SNAPSHOT' apply false
+}
+
+architectury {
+	minecraft = rootProject.minecraft_version
+}
+
+allprojects {
+	apply plugin: 'java'
+	apply plugin: 'architectury-plugin'
+
+	group = maven_group
+	version = mod_version
+
+	repositories {
+		maven { url = 'https://maven.architectury.dev/' }
+		maven { url = 'https://maven.minecraftforge.net/' }
+		mavenCentral()
+	}
+
+	tasks.withType(JavaCompile).configureEach {
+		options.encoding = 'UTF-8'
+		options.release = 17
+	}
+}
+
+subprojects {
+	apply plugin: 'dev.architectury.loom'
+
+	base {
+		archivesName = rootProject.name
+	}
+
+	loom {
+		silentMojangMappingsLicense()
+	}
+
+	dependencies {
+		minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+		mappings loom.officialMojangMappings()
+	}
+}

@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "ae2throttletest.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": ["CountingMixin"],
+  "injectors": {"defaultRequire": 1}
+}

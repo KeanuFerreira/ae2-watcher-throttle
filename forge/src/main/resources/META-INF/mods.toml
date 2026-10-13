@@ -1,0 +1,29 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "MIT"
+
+[[mods]]
+modId = "ae2watcherthrottle"
+version = "${mod_version}"
+displayName = "AE2 Watcher Throttle"
+authors = "KeanuFerreira"
+description = '''Server-side: AE2 rebuilds a network's item list for Level Emitters, monitors and ME Requesters every N ticks instead of every tick.'''
+# Server-only: clients don't need it.
+displayTest = "IGNORE_ALL_VERSION"
+
+[[mixins]]
+config = "ae2watcherthrottle.mixins.json"
+
+[[dependencies.ae2watcherthrottle]]
+    modId = "forge"
+    mandatory = true
+    versionRange = "[47,48)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.ae2watcherthrottle]]
+    modId = "ae2"
+    mandatory = true
+    versionRange = "[15.4,16)"
+    ordering = "AFTER"
+    side = "BOTH"

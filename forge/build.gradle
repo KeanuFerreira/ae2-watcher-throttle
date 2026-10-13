@@ -1,0 +1,36 @@
+architectury {
+    platformSetupLoomIde()
+    forge()
+}
+
+loom {
+    forge {
+        mixinConfig "ae2watcherthrottle.mixins.json"
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+            'Specification-Title'     : 'AE2 Watcher Throttle',
+            'Implementation-Title'    : project.name,
+            'Implementation-Version'  : project.version,
+            'MixinConfigs'            : 'ae2watcherthrottle.mixins.json'
+        ])
+    }
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    def props = [mod_version: project.version]
+    inputs.properties props
+    filesMatching(['META-INF/mods.toml']) {
+        expand props
+    }
+}
+
+dependencies {
+    forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    // The exact AE2 build used by Project Infinity (see libs/README.md).
+    modImplementation files("${rootDir}/libs/appliedenergistics2-forge-15.4.10.jar")
+    modRuntimeOnly files("${rootDir}/libs/guideme-20.1.15.jar")
+}
